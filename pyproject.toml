@@ -1,20 +1,23 @@
-  [build-system]
+[build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
 name = "gruta"
-dynamic = ["version"]
-description = 'Gruta is a Python implementation of the simple actor model'
 readme = "README.md"
-requires-python = ">=3.8"
-license = "MIT"
-keywords = []
+dynamic = ["version"]
+license = "Apache-2.0"
+keywords = ["actor", "async", "asynchronous", "concurrency"]
+description = 'Gruta is a Python implementation of the Simple Actor Model'
 authors = [
   { name = "Evgenii Zhuravlev", email = "e.zhuravlev@netcon.ee" },
 ]
+
+requires-python = ">=3.8"
+
 classifiers = [
   "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
   "Programming Language :: Python",
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
@@ -23,21 +26,38 @@ classifiers = [
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
+  "Topic :: Software Development :: Libraries",
+  "License :: OSI Approved :: Apache Software License",
 ]
-dependencies = []
+dependencies = [
+]
 
 [project.urls]
-Documentation = "https://github.com/unknown/gruta#readme"
-Issues = "https://github.com/unknown/gruta/issues"
-Source = "https://github.com/unknown/gruta"
+Source = "https://github.com/netconsolution/gruta"
+Issues = "https://github.com/netconsolution/gruta/issues"
+Changelog = "https://github.com/netconsolution/gruta#chandelog"
+Documentation = "https://github.com/netconsolution/gruta#readme"
+
 
 [tool.hatch.version]
-path = "src/gruta/__about__.py"
+path = "src/gruta/__version__.py"
+
+[tool.hatch.build]
+skip-excluded-dirs = true
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/tests",
+    "/src/gruta",
+    "/README.md",
+    "/CHANGELOG.md",
+]
+ignore-vcs = true
 
 [tool.hatch.envs.default]
 dependencies = [
-  "coverage[toml]>=6.5",
   "pytest",
+  "coverage[toml]>=6.5",
 ]
 [tool.hatch.envs.default.scripts]
 test = "pytest {args:tests}"
@@ -66,12 +86,12 @@ source_pkgs = ["gruta", "tests"]
 branch = true
 parallel = true
 omit = [
-  "src/gruta/__about__.py",
+  "src/gruta/__version__.py",
 ]
 
 [tool.coverage.paths]
-gruta = ["src/gruta", "*/gruta/src/gruta"]
 tests = ["tests", "*/gruta/tests"]
+gruta = ["src/gruta", "*/gruta/src/gruta"]
 
 [tool.coverage.report]
 exclude_lines = [
