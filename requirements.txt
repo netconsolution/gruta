@@ -1,0 +1,19 @@
+# We're pinning our tooling, because it's an environment we can strictly control.
+# On the other hand, we're not pinning package dependencies, because our tests
+# needs to pass with the latest version of the packages.
+
+
+# Documentation
+mkdocs ~=1.5.3
+mkautodoc~=0.2.0
+mkdocs-material~=9.5.12
+
+# Packaging
+build~=1.1.1
+twine~=5.0.0
+
+# Tests & Linting
+mypy~=1.8.0
+pytest~=8.0.2
+coverage[toml]~=7.4.3
+
